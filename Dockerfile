@@ -41,4 +41,5 @@ RUN patch galaxy-python/galaxy/universe_wsgi.ini /patch_config.patch && rm /patc
 
 EXPOSE 8080
 
+
 ENTRYPOINT ["galaxy-python/galaxy/run.sh"]
