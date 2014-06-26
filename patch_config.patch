@@ -1,0 +1,10 @@
+95,96c95,96
+< database_connection = postgres:///galaxy?user=galaxy&password=galaxy&host=/var/run/postgresql
+< #database_connection = sqlite:///./database/universe.sqlite?isolation_level=IMMEDIATE
+---
+> #database_connection = postgres:///galaxy?user=galaxy&password=galaxy&host=/var/run/postgresql
+> database_connection = sqlite:///./database/universe.sqlite?isolation_level=IMMEDIATE
+476c476
+< admin_users = madduri@mcs.anl.gov,liubo03@gmail.com, raffaele.montella@uniparthenope.it
+---
+> admin_users = pete.vilter@gmail.com
