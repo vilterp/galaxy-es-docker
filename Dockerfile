@@ -20,26 +20,16 @@ RUN apt-get install -y language-pack-en gfortran gcc g++ make bison autoconf fle
 RUN easy_install -U globus-provision jsonschema lxml simplekml pykml PIL
 
 # Install the Globus Online python nexus client
-
 # TODO: install with package manager instead of git?
 RUN git clone -b JIRA-GRAPH-1069 https://github.com/globusonline/python-nexus-client.git && cd python-nexus-client && python setup.py install && cd .. && rm -rf python-nexus-client
 
-# okay, seriously not sure how to handle database creation
-# ADD create-galaxy.sql /tmp/create-galaxy.sql
-
-# RUN su - postgres -c 'cat /tmp/create-galaxy.sql|psql'
-# RUN rm /tmp/create-galaxy.sql
-
-# TODO: turn the diff of my config file from the Vagrant environment into a patch; apply it here
-# (yes, in a perfect world the admin users and db string would be passed as environment variables; we're not there yet)
-
+# clone galaxy
 RUN hg clone https://bitbucket.org/faceit/galaxy galaxy-python/galaxy
 
+# patch galaxy config to a) use sqlite and b) add pete.vilter@gmail.com as an admin user
 COPY patch_config.patch /patch_config.patch
-
 RUN patch galaxy-python/galaxy/universe_wsgi.ini /patch_config.patch && rm /patch_config.patch
 
 EXPOSE 8080
 
-
-ENTRYPOINT ["galaxy-python/galaxy/run.sh"]
+CMD ["galaxy-python/galaxy/run.sh"]
