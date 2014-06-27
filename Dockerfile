@@ -4,9 +4,6 @@ ENV LANGUAGE en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
-RUN export LANGUAGE="en_US.UTF-8"
-RUN export LC_ALL="en_US.UTF-8"
-
 RUN mkdir galaxy-python
 RUN mkdir galaxy-python/galaxy
 RUN mkdir galaxy-python/galaxyTools
