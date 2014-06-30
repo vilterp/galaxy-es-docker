@@ -1,7 +1,5 @@
 FROM ubuntu:12.04
 
-ENV LANGUAGE en_US.UTF-8
-ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
 RUN mkdir galaxy-python
@@ -9,7 +7,7 @@ RUN mkdir galaxy-python/galaxy
 RUN mkdir galaxy-python/galaxyTools
 RUN mkdir galaxy-python/galaxyIndices
 
-RUN mkdir /nfs
+# RUN mkdir /nfs
 
 # install stuff
 
@@ -28,8 +26,9 @@ RUN git clone -b JIRA-GRAPH-1069 https://github.com/globusonline/python-nexus-cl
 RUN hg clone https://bitbucket.org/faceit/galaxy galaxy-python/galaxy
 
 # patch galaxy config to a) use sqlite and b) add pete.vilter@gmail.com as an admin user
-COPY patch_config.patch /patch_config.patch
-RUN patch galaxy-python/galaxy/universe_wsgi.ini /patch_config.patch && rm /patch_config.patch
+# TODO: pass admin user as environment variable or something?
+COPY universe_wsgi.ini.patch /universe_wsgi.ini.patch
+RUN patch galaxy-python/galaxy/universe_wsgi.ini /universe_wsgi.ini.patch && rm /universe_wsgi.ini.patch
 
 EXPOSE 8080
 
