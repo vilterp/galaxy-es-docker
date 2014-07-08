@@ -30,7 +30,14 @@ RUN hg clone https://bitbucket.org/faceit/galaxy galaxy-python/galaxy
 COPY universe_wsgi.ini.patch /universe_wsgi.ini.patch
 RUN patch galaxy-python/galaxy/universe_wsgi.ini /universe_wsgi.ini.patch && rm /universe_wsgi.ini.patch
 
+# finish installation
+
+# download eggs
+ENV PYTHONPATH galaxy-python/galaxy/lib
 RUN python galaxy-python/galaxy/scripts/fetch_eggs.py -c galaxy-python/galaxy/universe_wsgi.ini
+
+# create & migrate database
+RUN galaxy-python/galaxy/create_db.sh
 
 EXPOSE 8080
 
