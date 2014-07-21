@@ -13,7 +13,7 @@ RUN mkdir galaxy-python/galaxyIndices
 
 RUN apt-get update
 RUN apt-get upgrade -y
-RUN apt-get install -y language-pack-en gfortran gcc g++ make bison autoconf flex aptitude curl libcurl4-openssl-dev uuid-dev byacc python-numpy python-scipy python-netcdf python-setuptools postgresql python-setuptools python-dev libffi-dev build-essential mercurial openssh-server samba smbfs r-base octave gnuplot python-pip python-matplotlib git subversion libxml2-utils libx11-dev libxmu-dev libjasper-dev libxslt-dev libxml2-dev grads nco cdo mono-devel
+RUN apt-get install -y language-pack-en gfortran gcc g++ make bison autoconf flex aptitude curl libcurl4-openssl-dev uuid-dev byacc python-numpy python-scipy python-netcdf python-setuptools postgresql python-setuptools python-dev libffi-dev build-essential mercurial openssh-server samba smbfs r-base octave gnuplot python-pip python-matplotlib git subversion libxml2-utils libx11-dev libxmu-dev libjasper-dev libxslt-dev libxml2-dev grads nco cdo mono-devel mono-vbnc libboost-all-dev libxml2-dev tcl8.5-dev r-recommended
 
 # TODO: use pip?
 RUN easy_install -U globus-provision jsonschema lxml simplekml pykml PIL
